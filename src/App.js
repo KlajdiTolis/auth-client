@@ -6,19 +6,6 @@ function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  // const dataF = async () => {
-  //   fetch("/users")
-  //     .then((res) => res.json())
-  //     .then((dataa) => {
-  //       setData(dataa);
-  //       console.log(dataa);
-  //     });
-  // };
-
-  // useEffect(() => {
-  //   dataF();
-  // }, []);
-
   const login = () => {
     fetch("/register", {
       method: "POST",

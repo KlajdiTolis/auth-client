@@ -25,7 +25,7 @@ const defaultTheme = createTheme();
 export default function SignUp() {
   const navigate = useNavigate();
 
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([]); 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 

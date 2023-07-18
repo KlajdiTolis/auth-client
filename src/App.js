@@ -1,45 +1,26 @@
-import { useEffect, useState } from "react";
-import "./App.css";
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-function App() {
-  const [data, setData] = useState([]);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+// import comp
+import LogIn from "./layout/Login";
+import SignUp from "./layout/SignUp";
+import Dashboard from "./pages/Dashboard";
 
-  const login = () => {
-    fetch("/register", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({
-        username: username,
-        password: password,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-  };
+const App = () => {
+  const token = localStorage.getItem("access_token");
+  console.log(token, "token");
 
   return (
-    <div className="App">
-      <form onSubmit={login}>
-        <input
-          type="text"
-          onChange={(e) => {
-            setUsername(e.target.value);
-          }}
-        />
-        <input
-          type="password"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
-        <button>Submit</button>
-      </form>
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<LogIn />} default />
+          {token && <Route path="/" element={<Dashboard />} />}
+          <Route path="/signUp" element={<SignUp />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
-}
+};
 
 export default App;
